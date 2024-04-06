@@ -1,4 +1,4 @@
-![Texto alternativo](\logo.png)
+![Texto alternativo](logo.png)
 
 
 ## Prueba Técnica
