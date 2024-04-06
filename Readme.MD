@@ -1,4 +1,4 @@
-![Texto alternativo](XALDIGITAL\logo.png)
+![Texto alternativo](\logo.png)
 
 
 ## Prueba Técnica
