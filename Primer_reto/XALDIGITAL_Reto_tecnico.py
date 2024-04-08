@@ -2,6 +2,8 @@ import pandas as pd
 import requests
 import datetime
 
+
+#Conectarse a la API y generar el DataFrame
 def obtener_respuestas():
     # URL de la API
     url = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=perl&site=stackoverflow'
@@ -15,16 +17,19 @@ def obtener_respuestas():
     respuestas.head()
     return respuestas
 
+#Función para contar la cantidada de respuestas contestadas
 def cantidad_respuestas_constestadas(respuestas):
     respuestas_contestadas = respuestas['is_answered'].value_counts()[0]
     respuestas_no_contestadas = respuestas['is_answered'].value_counts()[1]
     return int(respuestas_contestadas), int(respuestas_no_contestadas)
 
+#Función para encontrar la respuesta con menor cantidad de vistas
 def respuesta_menor_cantidad_vista(respuestas):
     menor_vistas = respuestas['view_count'].min()
     respuesta_menor_vistas = respuestas[respuestas['view_count']==menor_vistas]
     return respuesta_menor_vistas
 
+#Función para encontrar la respuesta más vieja y la más actual
 def respuesta_mas_vieja_actual(respuestas):
     fecha_mas_vieja = respuestas['creation_date'].min()
     fecha_mas_actual = respuestas['creation_date'].max()
@@ -37,11 +42,13 @@ def respuesta_mas_vieja_actual(respuestas):
 
     return fecha_mas_vieja_legible, respuesta_mas_vieja, fecha_mas_actual_legible, respuesta_mas_actual
 
+#Función para encontrar la respuesta del owner con la mejor reputación
 def respuesta_owner_mejor_reputacion(respuestas):
     owner_mayor_reputacion = respuestas['owner.reputation'].max()
     respuesta_owner_mayor_reputacion = respuestas[respuestas['owner.reputation']==owner_mayor_reputacion]
     return respuesta_owner_mayor_reputacion
 
+#Función para imprimir los resultados en consola
 def imprimir_resultados(respuestas_contestadas, respuestas_no_contestadas, respuesta_menor_vistas, fecha_mas_vieja_legible, respuesta_mas_vieja, fecha_mas_actual_legible, respuesta_mas_actual, respuesta_owner_mayor_reputacion):
     # Respuestas del punto 2
     print(f'Respuestas del punto 2\n')
